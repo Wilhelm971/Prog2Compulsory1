@@ -66,6 +66,9 @@ void APlayerCharacterCPP::SetupPlayerInputComponent(UInputComponent* PlayerInput
 		Input->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Look);
 		Input->BindAction(JumpAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::JumpEvent);
 		Input->BindAction(InteractAction, ETriggerEvent::Started, this, &APlayerCharacterCPP::Interact);
+		Input->BindAction(SprintAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::StartSprint);
+		Input->BindAction(SprintAction, ETriggerEvent::Completed, this, &APlayerCharacterCPP::EndSprint);
+		
 	}
 
 }
@@ -108,6 +111,16 @@ void APlayerCharacterCPP::JumpEvent()
 void APlayerCharacterCPP::Interact()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Pressed E");
+}
+
+void APlayerCharacterCPP::StartSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+}
+
+void APlayerCharacterCPP::EndSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 

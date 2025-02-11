@@ -34,6 +34,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	class UInputAction* InteractAction;
 
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputAction* SprintAction;
+
 public:
 	// Sets default values for this character's properties
 	APlayerCharacterCPP();
@@ -57,6 +60,14 @@ protected:
 	void Look(const FInputActionValue& InputValue);
 	void JumpEvent();
 	void Interact();
+
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float WalkSpeed;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float RunSpeed;
+	void StartSprint();
+	void EndSprint();
 
 
 
