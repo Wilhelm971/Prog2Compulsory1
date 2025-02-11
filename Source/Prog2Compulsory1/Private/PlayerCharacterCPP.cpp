@@ -65,7 +65,7 @@ void APlayerCharacterCPP::SetupPlayerInputComponent(UInputComponent* PlayerInput
 		Input->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Move);
 		Input->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Look);
 		Input->BindAction(JumpAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::JumpEvent);
-		Input->BindAction(InteractAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Interact);
+		Input->BindAction(InteractAction, ETriggerEvent::Started, this, &APlayerCharacterCPP::Interact);
 	}
 
 }
