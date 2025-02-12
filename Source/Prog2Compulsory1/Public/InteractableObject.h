@@ -14,6 +14,8 @@ class PROG2COMPULSORY1_API AInteractableObject : public AActor, public IInteract
 
 	FTimerHandle DestroyTimerHandle;
 	float Duration = 0.5f;
+	
+	
 
 public:
 	// Sets default values for this actor's properties

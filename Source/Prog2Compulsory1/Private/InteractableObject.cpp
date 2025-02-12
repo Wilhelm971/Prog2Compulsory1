@@ -25,6 +25,8 @@ void AInteractableObject::Tick(float DeltaTime)
 }
 
 void AInteractableObject::OnInteract_Implementation()
+
+	// Calls the Destroy Object function
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Interacting");
 	GetWorld()->GetTimerManager().SetTimer(DestroyTimerHandle, this, &AInteractableObject::DestroyObject, Duration, false);

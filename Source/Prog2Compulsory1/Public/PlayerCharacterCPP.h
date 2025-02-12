@@ -41,6 +41,8 @@ protected:
 public:
 	// Sets default values for this character's properties
 	APlayerCharacterCPP();
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "HUD")
+	int CurrentCount = 0;
 
 protected:
 	// Called when the game starts or when spawned
@@ -56,13 +58,13 @@ public:
 
 
 protected:
-
+	// Input functions
 	void Move(const FInputActionValue& InputValue);
 	void Look(const FInputActionValue& InputValue);
 	void JumpEvent();
 	void Interact();
 
-
+	 // Sprinting
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float WalkSpeed;
 	UPROPERTY(EditAnywhere, Category = "Movement")

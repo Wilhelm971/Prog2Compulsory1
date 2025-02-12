@@ -28,6 +28,7 @@ APlayerCharacterCPP::APlayerCharacterCPP()
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
+	// Sets speed to 500
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 
 }
@@ -61,6 +62,7 @@ void APlayerCharacterCPP::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	}
 
 	if (UEnhancedInputComponent* Input = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+		// Bind the input actions
 	{
 		Input->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Move);
 		Input->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacterCPP::Look);
@@ -72,7 +74,7 @@ void APlayerCharacterCPP::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	}
 
 }
-
+// Movement function
 void APlayerCharacterCPP::Move(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
@@ -92,6 +94,7 @@ void APlayerCharacterCPP::Move(const FInputActionValue& InputValue)
 	}
 }
 
+// Camera function
 void APlayerCharacterCPP::Look(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
@@ -102,12 +105,13 @@ void APlayerCharacterCPP::Look(const FInputActionValue& InputValue)
 		AddControllerPitchInput(InputVector.Y);
 	}
 }
-
+// Jump function
 void APlayerCharacterCPP::JumpEvent()
 {
 	ACharacter::Jump();
 }
 
+// Interaction function
 void APlayerCharacterCPP::Interact()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Pressed E");
@@ -123,11 +127,15 @@ void APlayerCharacterCPP::Interact()
 	{
 		if (IInteract_Interface* Interact_Interface = Cast<IInteract_Interface>(HitResult.GetActor()))
 		{
+			// Calls the OnInteract function
 			Interact_Interface->OnInteract_Implementation();
+			// Updates how many cubes you have
+			CurrentCount++;
 		}
 	}
 }
 
+// Sprinting functions
 void APlayerCharacterCPP::StartSprint()
 {
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
