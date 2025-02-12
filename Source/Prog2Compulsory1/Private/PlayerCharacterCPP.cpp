@@ -111,6 +111,21 @@ void APlayerCharacterCPP::JumpEvent()
 void APlayerCharacterCPP::Interact()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Pressed E");
+
+	FVector Start = RootComponent->GetComponentLocation();
+	FVector End = Start;
+	
+	FHitResult HitResult;
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	if (GetWorld()->SweepSingleByChannel(HitResult, Start, End, FQuat::Identity, ECC_Visibility, FCollisionShape::MakeSphere(150), Params))
+	{
+		if (IInteract_Interface* Interact_Interface = Cast<IInteract_Interface>(HitResult.GetActor()))
+		{
+			Interact_Interface->OnInteract_Implementation();
+		}
+	}
 }
 
 void APlayerCharacterCPP::StartSprint()

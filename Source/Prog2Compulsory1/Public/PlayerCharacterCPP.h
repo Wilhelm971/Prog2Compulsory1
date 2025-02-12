@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Interact_Interface.h"
 #include "InputActionValue.h"
 #include "PlayerCharacterCPP.generated.h"
 
