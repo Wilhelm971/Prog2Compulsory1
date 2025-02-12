@@ -12,6 +12,9 @@ class PROG2COMPULSORY1_API AInteractableObject : public AActor, public IInteract
 {
 	GENERATED_BODY()
 
+	FTimerHandle DestroyTimerHandle;
+	float Duration = 0.5f;
+
 public:
 	// Sets default values for this actor's properties
 	AInteractableObject();
@@ -24,5 +27,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void OnInteract_Implementation() override;
+	virtual void OnInteract_Implementation() override;
+
+	void DestroyObject();
 };
