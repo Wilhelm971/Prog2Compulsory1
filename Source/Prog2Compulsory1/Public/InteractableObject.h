@@ -13,7 +13,7 @@ class PROG2COMPULSORY1_API AInteractableObject : public AActor, public IInteract
 	GENERATED_BODY()
 
 	FTimerHandle DestroyTimerHandle;
-	float Duration = 0.5f;
+	float Duration = 0.01f;
 	
 	
 
